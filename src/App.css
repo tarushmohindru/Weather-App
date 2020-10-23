@@ -15,6 +15,7 @@ button{
   width: 300px;
   height: 40px;
   border: none;
+  Outline: none;
   font-weight: bold;
   background: red;
   border-radius: 5px;
