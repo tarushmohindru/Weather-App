@@ -14,17 +14,17 @@ function App() {
     const [icon,setIcon] = useState('');
     const key = ${ process.env.REACT_APP_API_KEY } ;
     useEffect(()=>{
-    fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID="+key+"&units=metric")
-   .then(res=>res.json())
-   .then(data=>{
-     console.log(data);
-     setFeel(Math.floor(data.main.feels_like));
-     setTemp(Math.floor(data.main.temp));
-     setDescription(data.weather[0].description);
-     setMain(data.weather[0].main);
-     setIcon(data.weather[0].icon);   
-   })
-    },[city]);
+        const fetchWeather = async () => {
+            const fetchData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=`+city+`&APPID=`+key+`&units=metric`);
+            const data = await fetchData.json();
+            setFeel(Math.floor(data.main.feels_like));
+            setTemp(Math.floor(data.main.temp));
+            setDescription(data.weather[0].description);
+            setMain(data.weather[0].main);
+            setIcon(data.weather[0].icon); 
+        }
+     fetchWeather();  
+   },[city])
     if(temp<-10){
       document.body.style="background:#000133;color:white;";
     } else if(temp>-10 && temp<0){
@@ -51,7 +51,7 @@ function App() {
       <input type="text" placeholder="Enter your city" value={cityName} onChange={handleChange}/>
       <button type="submit">Add</button>
       </form>
-      <div class="data">
+      <div className="data">
       <h1 id="city">{city}</h1>
       <h1 id="temp">{main}</h1>
       <h2 id="feel">{temp}°C</h2>
