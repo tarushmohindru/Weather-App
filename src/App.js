@@ -12,7 +12,7 @@ function App() {
     const [description,setDescription] = useState('');
     const [main,setMain] = useState('');
     const [icon,setIcon] = useState('');
-    const key = ${{ secrets.REACT_APP_API_KEY }} ;
+    const key = ${ process.env.REACT_APP_API_KEY } ;
     useEffect(()=>{
     fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID="+key+"&units=metric")
    .then(res=>res.json())
