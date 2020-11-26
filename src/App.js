@@ -12,7 +12,7 @@ function App() {
     const [description,setDescription] = useState('');
     const [main,setMain] = useState('');
     const [icon,setIcon] = useState('');
-    const key = ${ process.env.REACT_APP_API_KEY } ;
+    const key = `${ process.env.REACT_APP_API_KEY }` ;
     useEffect(()=>{
         const fetchWeather = async () => {
             const fetchData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=`+city+`&APPID=`+key+`&units=metric`);
